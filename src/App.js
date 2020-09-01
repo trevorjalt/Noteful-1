@@ -3,6 +3,7 @@ import { Route, Link } from 'react-router-dom';
 import STORE from './STORE'
 import NavList from './NavList'
 import NoteList from './NoteList'
+import Main from './Main'
 
 class App extends React.Component {
 
@@ -28,29 +29,34 @@ class App extends React.Component {
           </h1>
         </header>
         <main className='App'>
+        <Route
+            exact path={"/"}
+            render={(routerProps) =>
+              <Main
+                {...routerProps}
+                folders={this.state.folders}
+                notes={this.state.notes}
+                />
+            }
+          />
+          
           <Route
-            path={["/folder/:folderId", "/"]}
+            exact path={"/folder/:folderId"}
             render={(routerProps) =>
               <NavList
                 {...routerProps}
                 folders={this.state.folders} />
             }
           />
+          
           <Route
-            path={["/folder/:folderId", "/"]}
+            exact path={"/folder/:folderId"}
             render={(routerProps) =>
               <NoteList
                 {...routerProps}
                 notes={this.state.notes} />
             }
           />
-          {/* <Route
-            path="/folder/:folderId"
-            render={() =>
-              <NavList
-                folders={this.state.folders} />
-            } */}
-          {/* /> */}
         </main>
       </div>
     );
