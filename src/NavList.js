@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+
+
 export default function NavList(props) {
     console.log(props)
     
@@ -16,9 +18,12 @@ export default function NavList(props) {
             </div>
         )
     } else {
+        const note = props.notes.find(note => note.id === props.match.params.noteId)
+        const folder = props.folders.find(folder => folder.id === note.folderId) || {}
         return (
             <div>
                 <button onClick={() => props.history.goBack()} className="go-back">Go Back</button>
+                <p>{folder.name}</p>
             </div>
         )
     }
