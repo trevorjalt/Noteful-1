@@ -29,16 +29,18 @@ class App extends React.Component {
         </header>
         <main className='App'>
           <Route
-            path="/"
-            render={() =>
+            path={["/folder/:folderId", "/"]}
+            render={(routerProps) =>
               <NavList
+                {...routerProps}
                 folders={this.state.folders} />
             }
           />
           <Route
-            path="/"
-            render={() =>
+            path={["/folder/:folderId", "/"]}
+            render={(routerProps) =>
               <NoteList
+                {...routerProps}
                 notes={this.state.notes} />
             }
           />
@@ -46,9 +48,9 @@ class App extends React.Component {
             path="/folder/:folderId"
             render={() =>
               <NavList
-                notes={this.state.folders} />
-            }
-          /> */}
+                folders={this.state.folders} />
+            } */}
+          {/* /> */}
         </main>
       </div>
     );
