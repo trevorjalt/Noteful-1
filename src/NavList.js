@@ -1,9 +1,15 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom';
 export default function NavList(props) {
     return (
-        props.folders.map(folder =>
-            <div className="App-folders">{folder.name}</div>
-        )
+        <div>
+        {props.folders.map(folder =>(
+            <div className="App-folders"
+             key={folder.id}>
+                 <Link to={`folder/${folder.id}`}>{folder.name}</Link>
+                 </div>
+        ))}
+        <button name="add-folder" type="click">Add Folder</button>
+        </div>
     )
 }

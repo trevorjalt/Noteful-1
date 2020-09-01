@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import STORE from './STORE'
 import NavList from './NavList'
+import NoteList from './NoteList'
 
 class App extends React.Component {
 
@@ -29,10 +30,25 @@ class App extends React.Component {
         <main className='App'>
           <Route
             path="/"
-            render={() => 
-              <NavList 
-                folders={this.state.folders}/> }
+            render={() =>
+              <NavList
+                folders={this.state.folders} />
+            }
           />
+          <Route
+            path="/"
+            render={() =>
+              <NoteList
+                notes={this.state.notes} />
+            }
+          />
+          {/* <Route
+            path="/folder/:folderId"
+            render={() =>
+              <NavList
+                notes={this.state.folders} />
+            }
+          /> */}
         </main>
       </div>
     );
