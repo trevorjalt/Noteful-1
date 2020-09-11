@@ -1,4 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import moment from 'moment'
+
 export default function NoteList(props) {
     console.log(props)
 
@@ -9,8 +12,8 @@ export default function NoteList(props) {
     
     const mapper = (note) => (
         <div className="App-notes" key={note.id}>
-        <h3>{note.name}</h3>
-        <p>Date modified on {note.modified}</p>
+        <p><Link to={`/note/${note.id}`}>{note.name}</Link></p>
+        <p>{moment(note.modified).format('MMMM / DD / YYYY')}</p>
         <button name="delete" type="click">Delete</button>
     </div>
     )

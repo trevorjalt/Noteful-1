@@ -4,6 +4,7 @@ import STORE from './STORE'
 import NavList from './NavList'
 import NoteList from './NoteList'
 import Main from './Main'
+import Note from './Note'
 
 class App extends React.Component {
 
@@ -29,34 +30,56 @@ class App extends React.Component {
           </h1>
         </header>
         <main className='App'>
-        <Route
+          <Route
             exact path={"/"}
             render={(routerProps) =>
               <Main
                 {...routerProps}
                 folders={this.state.folders}
                 notes={this.state.notes}
+              />
+            }
+          />
+          <aside>
+            <Route
+              path={"/folder/:folderId"}
+              render={(routerProps) =>
+                <NavList
+                  {...routerProps}
+                  folders={this.state.folders}
                 />
-            }
-          />
-          
-          <Route
-            exact path={"/folder/:folderId"}
-            render={(routerProps) =>
-              <NavList
-                {...routerProps}
-                folders={this.state.folders} />
-            }
-          />
-          
-          <Route
-            exact path={"/folder/:folderId"}
-            render={(routerProps) =>
-              <NoteList
-                {...routerProps}
-                notes={this.state.notes} />
-            }
-          />
+              }
+            />
+            <Route
+              path={"/note/:noteId"}
+              render={(routerProps) =>
+                <NavList
+                  {...routerProps}
+                  folders={this.state.folders}
+                  notes={this.state.notes}
+                />
+              }
+            />
+          </aside>
+          <section>
+            <Route
+              exact path={"/folder/:folderId"}
+              render={(routerProps) =>
+                <NoteList
+                  {...routerProps}
+                  notes={this.state.notes} />
+              }
+            />
+            <Route
+              path={"/note/:noteId"}
+              render={(routerProps) =>
+                <Note
+                  {...routerProps}
+                  notes={this.state.notes}
+                />
+              }
+            />
+          </section>
         </main>
       </div>
     );
